@@ -1,19 +1,24 @@
-StartState = Class{__includes = BaseState}
+PauseState = Class{__includes = BaseState}
 
-function StartState:enter()
+function PauseState:enter()
 
 end
 
-function StartState:update(dt)
+function PauseState:update(dt)
 
   if love.keyboard.wasPressed('escape') then
     love.event.quit()
   end
+
+  if love.keyboard.wasPressed('space') then
+    gStateMachine:change('play')
+  end
+  
 end
 
-function StartState:render()
-  love.graphics.setColor(255,255,255)
+function PauseState:render()
+  love.graphics.setColor(255,0,255)
   love.graphics.setFont(gFonts['small'])
-  love.graphics.printf("START STATE", 0, VIRTUAL_HEIGHT / 2, VIRTUAL_WIDTH, 'center')
+  love.graphics.printf("PAUSE STATE", 0, VIRTUAL_HEIGHT / 2, VIRTUAL_WIDTH, 'center')
 
 end

@@ -1,19 +1,21 @@
-StartState = Class{__includes = BaseState}
+StageClearState = Class{__includes = BaseState}
 
-function StartState:enter()
+function StageClearState:enter()
 
 end
 
-function StartState:update(dt)
+function StageClearState:update(dt)
 
   if love.keyboard.wasPressed('escape') then
     love.event.quit()
   end
+
+
 end
 
-function StartState:render()
-  love.graphics.setColor(255,255,255)
+function StageClearState:render()
+  love.graphics.setColor(255,0,0)
   love.graphics.setFont(gFonts['small'])
-  love.graphics.printf("START STATE", 0, VIRTUAL_HEIGHT / 2, VIRTUAL_WIDTH, 'center')
+  love.graphics.printf("STAGE CLEAR STATE", 0, VIRTUAL_HEIGHT / 2, VIRTUAL_WIDTH, 'center')
 
 end
