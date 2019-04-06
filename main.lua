@@ -21,6 +21,7 @@ function love.load()
   }
 
   gTextures = {
+    ['logo'] = love.graphics.newImage('src/assets/hornetlogo.png'),
     ['ship1'] = love.graphics.newImage('src/assets/ship1.png'),
     ['bg1'] = love.graphics.newImage('src/assets/bg1.png')
   }
