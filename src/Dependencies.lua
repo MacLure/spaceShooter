@@ -6,3 +6,7 @@ require 'src/StateMachine'
 
 require 'src/states/BaseState'
 require 'src/states/StartState'
+require 'src/states/ShipSelectState'
+require 'src/states/PlayState'
+require 'src/states/PauseState'
+require 'src/states/StageClearState'

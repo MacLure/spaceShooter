@@ -21,7 +21,11 @@ function love.load()
   }
 
   gStateMachine = StateMachine {
-    ['start'] = function() return StartState() end
+    ['start'] = function() return StartState() end,
+    ['ship-select'] = function() return ShipSelectState() end,
+    ['play'] = function() return PlayState() end,
+    ['pause'] = function() return PauseState() end,
+    ['stage-clear'] = function() return StageClearState() end,
   }
 
   gStateMachine:change('start')
