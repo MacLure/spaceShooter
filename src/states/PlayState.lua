@@ -7,6 +7,10 @@ function PlayState:enter()
   self.bgScroll = 0
   self.bgScrollSpeed = -60
   self.bgLoopingPoint = -512
+
+  gAudio['music1']:setLooping(true)
+  gAudio['music1']:play()
+
 end
 
 function PlayState:update(dt)
@@ -15,7 +19,7 @@ function PlayState:update(dt)
     love.event.quit()
   end
 
-  if love.keyboard.wasPressed('space') then
+  if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
     gStateMachine:change('pause')
   end
 

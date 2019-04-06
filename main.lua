@@ -25,6 +25,10 @@ function love.load()
     ['bg1'] = love.graphics.newImage('src/assets/bg1.png')
   }
 
+  gAudio = {
+    ['music1'] = love.audio.newSource('src/assets/audio/rk-bumblebee.mp3', 'static')
+  }
+
   gStateMachine = StateMachine {
     ['start'] = function() return StartState() end,
     ['ship-select'] = function() return ShipSelectState() end,

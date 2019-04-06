@@ -10,7 +10,7 @@ function StartState:update(dt)
     love.event.quit()
   end
 
-  if love.keyboard.wasPressed('space') then
+  if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
     gStateMachine:change('ship-select')
   end
 
