@@ -16,6 +16,42 @@ function love.load()
 
   math.randomseed(os.time())
 
-  gStateMachine = StateMachine {}
+  gStateMachine = StateMachine {
+    ['start'] = function() return StartState() end
+  }
+
+  gStateMachine:change('start')
+
+  love.keyboard.keysPressed = {}
 
 end
+
+function love.resize(w, h)
+  push:resize(w, h)
+end
+
+function love.update(dt)
+  gStateMachine:update(dt)
+  love.keysPressed = {}
+end
+
+function love.keysPressed(key)
+  love.keyboard.keysPressed[key] = true
+end
+
+function love.keyboard.wasPressed(key)
+  if love.keyboard.keysPressed[key] then
+    return true
+  else
+    return false
+  end
+end
+
+function love.draw()
+  push:apply('start')
+
+
+  gStateMachine:render()
+  push:apply('end')
+end
+
