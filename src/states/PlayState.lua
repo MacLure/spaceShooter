@@ -14,7 +14,7 @@ function PlayState:update(dt)
     gStateMachine:change('pause')
   end
 
-
+  self.playerShip:update(dt)
 
 end
 
