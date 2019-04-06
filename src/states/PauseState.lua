@@ -19,6 +19,6 @@ end
 function PauseState:render()
   love.graphics.setColor(255,0,255)
   love.graphics.setFont(gFonts['small'])
-  love.graphics.printf("PAUSE STATE", 0, VIRTUAL_HEIGHT / 2, VIRTUAL_WIDTH, 'center')
+  love.graphics.printf("PAUSE STATE", 0, 20, VIRTUAL_WIDTH, 'center')
 
 end
