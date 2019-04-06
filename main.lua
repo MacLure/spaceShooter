@@ -21,7 +21,8 @@ function love.load()
   }
 
   gTextures = {
-    ['ship1'] = love.graphics.newImage('src/assets/ship1.png')
+    ['ship1'] = love.graphics.newImage('src/assets/ship1.png'),
+    ['bg1'] = love.graphics.newImage('src/assets/bg1.png')
   }
 
   gStateMachine = StateMachine {
