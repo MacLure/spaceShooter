@@ -13,5 +13,9 @@ function love.load()
     fullscreen = false,
     resizable = true
   })
+
   math.randomseed(os.time())
+
+  gStateMachine = StateMachine {}
+
 end
