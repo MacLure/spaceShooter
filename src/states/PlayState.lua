@@ -5,8 +5,8 @@ function PlayState:enter()
 
   self.bg = love.graphics.newImage('src/assets/bg1.png')
   self.bgScroll = 0
-  self.bgScrollSpeed = 60
-  self.bgLoopingPoint = 512
+  self.bgScrollSpeed = -60
+  self.bgLoopingPoint = -512
 end
 
 function PlayState:update(dt)
@@ -21,7 +21,8 @@ function PlayState:update(dt)
 
   self.playerShip:update(dt)
 
-  self.bgScroll = 
+
+  self.bgScroll = (self.bgScroll + self.bgScrollSpeed * dt) % self.bgLoopingPoint
 
 end
 
