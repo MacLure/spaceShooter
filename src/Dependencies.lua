@@ -4,6 +4,8 @@ Timer = require 'lib/knife.timer'
 
 require 'src/StateMachine'
 
+require 'src/PlayerShip'
+
 require 'src/states/BaseState'
 require 'src/states/StartState'
 require 'src/states/ShipSelectState'

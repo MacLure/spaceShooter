@@ -20,6 +20,10 @@ function love.load()
     ['small'] = love.graphics.newFont('fonts/font.ttf', 8)
   }
 
+  gTextures = {
+    ['ship1'] = love.graphics.newImage('src/assets/ship1.png')
+  }
+
   gStateMachine = StateMachine {
     ['start'] = function() return StartState() end,
     ['ship-select'] = function() return ShipSelectState() end,
