@@ -5,12 +5,15 @@ function StartState:enter()
 end
 
 function StartState:update(dt)
-  love.graphics.setColor(255,255,255)
+
   if love.keyboard.wasPressed('escape') then
     love.event.quit()
   end
 end
 
 function StartState:render()
+  love.graphics.setColor(255,255,255)
+  love.graphics.setFont(gFonts['small'])
+  love.graphics.printf("START STATE", 0, VIRTUAL_HEIGHT / 2, VIRTUAL_WIDTH, 'center')
 
 end

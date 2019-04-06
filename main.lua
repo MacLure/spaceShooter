@@ -16,6 +16,10 @@ function love.load()
 
   math.randomseed(os.time())
 
+  gFonts = {
+    ['small'] = love.graphics.newFont('fonts/font.ttf', 8)
+  }
+
   gStateMachine = StateMachine {
     ['start'] = function() return StartState() end
   }
@@ -32,18 +36,18 @@ end
 
 function love.update(dt)
   gStateMachine:update(dt)
-  love.keysPressed = {}
+  love.keyboard.keysPressed = {}
 end
 
-function love.keysPressed(key)
+function love.keypressed(key)
   love.keyboard.keysPressed[key] = true
 end
 
 function love.keyboard.wasPressed(key)
   if love.keyboard.keysPressed[key] then
-    return true
+      return true
   else
-    return false
+      return false
   end
 end
 
