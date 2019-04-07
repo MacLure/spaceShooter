@@ -1,8 +1,12 @@
 PlayerShip = Class{}
 
-function PlayerShip:init()
-  self.skin = love.graphics.newImage('src/assets/ship1.png')
-
+function PlayerShip:init(selectedShip)
+  if selectedShip == 1 then
+    self.skin = love.graphics.newImage('src/assets/ship1.png')
+  end
+  if selectedShip == 2 then
+    self.skin = love.graphics.newImage('src/assets/ship2.png')
+  end
   self.x = VIRTUAL_WIDTH / 2
   self.y = VIRTUAL_HEIGHT / 2 - 20
 

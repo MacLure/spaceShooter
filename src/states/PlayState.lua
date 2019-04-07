@@ -1,7 +1,7 @@
 PlayState = Class{__includes = BaseState}
 
-function PlayState:enter()
-  self.playerShip = PlayerShip()
+function PlayState:enter(params)
+  self.playerShip = PlayerShip(params.selectedShip)
 
   self.bg = love.graphics.newImage('src/assets/bg1.png')
   self.bgScroll = 0

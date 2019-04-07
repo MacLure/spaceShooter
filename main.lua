@@ -28,6 +28,7 @@ function love.load()
   }
 
   gAudio = {
+    ['change'] = love.audio.newSource('src/assets/audio/change-select.wav', 'static'),
     ['shot1'] = love.audio.newSource('src/assets/audio/shot1.wav', 'static'),
     ['music1'] = love.audio.newSource('src/assets/audio/rk-bumblebee.mp3', 'static')
   }

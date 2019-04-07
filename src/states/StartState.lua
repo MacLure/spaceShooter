@@ -18,7 +18,7 @@ end
 
 function StartState:render()
 
-  love.graphics.setColor(255,100,100)
+  love.graphics.setColor(255,75,0, 200)
 
   love.graphics.draw(gTextures['logo'], 190,60)
 
