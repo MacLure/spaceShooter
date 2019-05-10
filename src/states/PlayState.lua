@@ -23,7 +23,16 @@ function PlayState:update(dt)
     gStateMachine:change('pause')
   end
 
+  if love.keyboard.wasPressed('space') then
+    self.playerShot = PlayerShot(self.playerShip.x + 16, self.playerShip.y + 6)
+  end
+
   self.playerShip:update(dt)
+
+  if self.playerShot then
+    self.playerShot:update(dt)
+  end
+
 
   self.bgScroll = (self.bgScroll + self.bgScrollSpeed * dt) % self.bgLoopingPoint
 
@@ -44,5 +53,9 @@ function PlayState:render()
 
   love.graphics.setColor(255,255,255)
   self.playerShip:render()
+  if self.playerShot then
+    self.playerShot:render()
+  end
+
 
 end
