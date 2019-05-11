@@ -6,6 +6,7 @@ require 'src/StateMachine'
 
 require 'src/entities/PlayerShip'
 require 'src/entities/PlayerShot'
+require 'src/entities/Enemy1'
 
 require 'src/states/BaseState'
 require 'src/states/StartState'

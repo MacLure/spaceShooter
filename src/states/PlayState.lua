@@ -13,6 +13,8 @@ function PlayState:enter(params)
   gAudio['music1']:setLooping(true)
   gAudio['music1']:play()
 
+  self.enemy = Enemy1()
+
 end
 
 function PlayState:update(dt)
@@ -39,6 +41,8 @@ function PlayState:update(dt)
 
   self.bgScroll = (self.bgScroll + self.bgScrollSpeed * dt) % self.bgLoopingPoint
 
+  self.enemy:update(dt)
+
 end
 
 function PlayState:render()
@@ -55,5 +59,8 @@ function PlayState:render()
   for k, shot in pairs(self.playerShots) do
     shot:render()
   end
+
+  self.enemy:render()
+
 
 end
