@@ -1,7 +1,7 @@
 PlayerShot = Class{}
 
 function PlayerShot:init(x, y)
-  self.shotSpeed = 100
+  self.shotSpeed = 400
   self.x = x
   self.y = y
   self.graphic = love.graphics.newImage('src/assets/shot1.png')
