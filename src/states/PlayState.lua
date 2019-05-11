@@ -9,11 +9,12 @@ function PlayState:enter(params)
   self.bgLoopingPoint = -512
 
   self.playerShots = {}
+  self.enemies = {}
 
   gAudio['music1']:setLooping(true)
   gAudio['music1']:play()
 
-  self.enemy = Enemy1()
+  table.insert(self.enemies, Enemy1())
 
 end
 
@@ -35,13 +36,26 @@ function PlayState:update(dt)
 
   self.playerShip:update(dt)
 
-  for k, shot in pairs(self.playerShots) do
+  for i, shot in pairs(self.playerShots) do
     shot:update(dt)
+
+    for j, enemy in pairs(self.enemies) do
+      if shot:collides(enemy) then
+        table.remove(self.enemies, j)
+        table.remove(self.playerShots, i)
+      end
+    end
+
   end
 
   self.bgScroll = (self.bgScroll + self.bgScrollSpeed * dt) % self.bgLoopingPoint
 
-  self.enemy:update(dt)
+
+  for k, enemy in pairs(self.enemies) do
+    enemy:update(dt)
+  end
+
+  -- self.enemy:update(dt)
 
 end
 
@@ -60,7 +74,10 @@ function PlayState:render()
     shot:render()
   end
 
-  self.enemy:render()
+  for k, enemy in pairs(self.enemies) do
+    enemy:render(dt)
+  end
+  -- self.enemy:render()
 
 
 end
