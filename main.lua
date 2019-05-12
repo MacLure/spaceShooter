@@ -24,7 +24,9 @@ function love.load()
     ['logo'] = love.graphics.newImage('src/assets/hornetlogo.png'),
     ['ship1'] = love.graphics.newImage('src/assets/ship1.png'),
     ['ship2'] = love.graphics.newImage('src/assets/ship2.png'),
-    ['bg1'] = love.graphics.newImage('src/assets/bg1.png')
+    ['bg1'] = love.graphics.newImage('src/assets/bg1.png'),
+    ['bg2'] = love.graphics.newImage('src/assets/bg2.png'),
+    ['bg3'] = love.graphics.newImage('src/assets/bg3.png')
   }
 
   gAudio = {

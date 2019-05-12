@@ -3,9 +3,18 @@ PlayState = Class{__includes = BaseState}
 function PlayState:enter(params)
   self.playerShip = PlayerShip(params.selectedShip)
 
-  self.bg = love.graphics.newImage('src/assets/bg1.png')
-  self.bgScroll = 0
-  self.bgScrollSpeed = -60
+  self.bg1 = love.graphics.newImage('src/assets/bg1.png')
+  self.bg2 = love.graphics.newImage('src/assets/bg2.png')
+  self.bg3 = love.graphics.newImage('src/assets/bg3.png')
+
+  self.bg1Scroll = 0
+  self.bg2Scroll = 0
+  self.bg3Scroll = 0
+
+  self.bg1ScrollSpeed = 0
+  self.bg2ScrollSpeed = -10
+  self.bg3ScrollSpeed = -80
+
   self.bgLoopingPoint = -512
 
   self.playerShots = {}
@@ -62,7 +71,9 @@ function PlayState:update(dt)
     end
   end
 
-  self.bgScroll = (self.bgScroll + self.bgScrollSpeed * dt) % self.bgLoopingPoint
+  self.bg1Scroll = (self.bg1Scroll + self.bg1ScrollSpeed * dt) % self.bgLoopingPoint
+  self.bg2Scroll = (self.bg2Scroll + self.bg2ScrollSpeed * dt) % self.bgLoopingPoint
+  self.bg3Scroll = (self.bg3Scroll + self.bg3ScrollSpeed * dt) % self.bgLoopingPoint
 
   for k, enemy in pairs(self.enemies) do
     enemy:update(dt)
@@ -79,7 +90,10 @@ end
 
 function PlayState:render()
   love.graphics.setColor(255,255,255)
-  love.graphics.draw(self.bg, self.bgScroll,0)
+  love.graphics.draw(self.bg1, self.bg1Scroll,0)
+  love.graphics.draw(self.bg2, self.bg2Scroll,0)
+  love.graphics.draw(self.bg3, self.bg3Scroll,0)
+
 
   love.graphics.setColor(255,255,0)
   love.graphics.setFont(gFonts['small'])
