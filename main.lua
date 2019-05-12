@@ -30,6 +30,8 @@ function love.load()
   gAudio = {
     ['change'] = love.audio.newSource('src/assets/audio/change-select.wav', 'static'),
     ['shot1'] = love.audio.newSource('src/assets/audio/shot1.wav', 'static'),
+    ['enemyHit'] = love.audio.newSource('src/assets/audio/enemyHit.wav', 'static'),
+    ['explosion'] = love.audio.newSource('src/assets/audio/explosion.wav', 'static'),
     ['music1'] = love.audio.newSource('src/assets/audio/rk-bumblebee.mp3', 'static')
   }
 

@@ -50,8 +50,13 @@ function PlayState:update(dt)
         enemy:takeDamage(1)
         table.remove(self.playerShots, i)
         if enemy.hp < 1 then
+          gAudio['explosion']:stop()
+          gAudio['explosion']:play()      
           table.remove(self.enemies, j)
-          table.insert(self.enemies, randomEnemy)  
+          table.insert(self.enemies, randomEnemy)
+        else
+          gAudio['enemyHit']:stop()
+          gAudio['enemyHit']:play()      
         end
       end
     end
@@ -69,7 +74,7 @@ function PlayState:update(dt)
       table.insert(self.enemies, randomEnemy)  
     end
   end
-  
+
 end
 
 function PlayState:render()
