@@ -43,9 +43,12 @@ function PlayState:update(dt)
 
     for j, enemy in pairs(self.enemies) do
       if shot:collides(enemy) then
-        table.remove(self.enemies, j)
+        enemy:takeDamage(1)
         table.remove(self.playerShots, i)
-        table.insert(self.enemies, randomEnemy)
+        if enemy.hp < 1 then
+          table.remove(self.enemies, j)
+          table.insert(self.enemies, randomEnemy)  
+        end
       end
     end
 

@@ -6,7 +6,12 @@ function Enemy1:init()
   self.width = 24
   self.height = 24
   self.speed = 10
+  self.hp = 1
   self.graphic = love.graphics.newImage('src/assets/enemy1.png')
+end
+
+function Enemy1:takeDamage(amount)
+  self.hp = self.hp - 1
 end
 
 function Enemy1:update(dt)
