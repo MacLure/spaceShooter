@@ -43,6 +43,7 @@ function PlayState:update(dt)
       if shot:collides(enemy) then
         table.remove(self.enemies, j)
         table.remove(self.playerShots, i)
+        table.insert(self.enemies, Enemy2())
       end
     end
 
