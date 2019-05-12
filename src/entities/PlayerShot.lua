@@ -25,6 +25,13 @@ function PlayerShot:collides(target)
   return true
 end
 
+function PlayerShot:leftPlay()
+  if self.x > WINDOW_WIDTH then
+    return true
+  end
+  return false
+end
+
 function PlayerShot:render()
   love.graphics.draw(self.graphic, self.x, self.y)
 end

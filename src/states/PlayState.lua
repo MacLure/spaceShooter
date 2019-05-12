@@ -41,6 +41,10 @@ function PlayState:update(dt)
   for i, shot in pairs(self.playerShots) do
     shot:update(dt)
 
+    if shot:leftPlay() then
+      table.remove(self.playerShots, i)
+    end
+
     for j, enemy in pairs(self.enemies) do
       if shot:collides(enemy) then
         enemy:takeDamage(1)
@@ -51,18 +55,21 @@ function PlayState:update(dt)
         end
       end
     end
-
   end
 
   self.bgScroll = (self.bgScroll + self.bgScrollSpeed * dt) % self.bgLoopingPoint
-
 
   for k, enemy in pairs(self.enemies) do
     enemy:update(dt)
   end
 
-  -- self.enemy:update(dt)
-
+  for k, enemy in pairs(self.enemies) do
+    if enemy:leftPlay() then
+      table.remove(self.enemies, k)
+      table.insert(self.enemies, randomEnemy)  
+    end
+  end
+  
 end
 
 function PlayState:render()

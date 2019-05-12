@@ -14,6 +14,13 @@ function Enemy2:takeDamage(amount)
   self.hp = self.hp - 1
 end
 
+function Enemy2:leftPlay()
+  if self.x < 0 - self.width then
+    return true
+  end
+  return false
+end
+
 function Enemy2:update(dt)
   self.x = self.x - 100 * dt
 end
