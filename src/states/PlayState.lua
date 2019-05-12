@@ -36,6 +36,8 @@ function PlayState:update(dt)
 
   self.playerShip:update(dt)
 
+  randomEnemy = math.random(2) == 1 and Enemy1() or Enemy2()
+
   for i, shot in pairs(self.playerShots) do
     shot:update(dt)
 
@@ -43,7 +45,7 @@ function PlayState:update(dt)
       if shot:collides(enemy) then
         table.remove(self.enemies, j)
         table.remove(self.playerShots, i)
-        table.insert(self.enemies, Enemy2())
+        table.insert(self.enemies, randomEnemy)
       end
     end
 
