@@ -5,7 +5,7 @@ function Enemy1:init()
   self.y = love.math.random(50, VIRTUAL_HEIGHT - 100 )
   self.width = 24
   self.height = 24
-  self.speed = 10
+  self.speed = 200
   self.hp = 1
   self.graphic = love.graphics.newImage('src/assets/enemy1.png')
 end
@@ -22,7 +22,7 @@ function Enemy1:leftPlay()
 end
 
 function Enemy1:update(dt)
-  self.x = self.x - 100 * dt
+  self.x = self.x - self.speed * dt
 end
 
 function Enemy1:render()

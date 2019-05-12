@@ -40,7 +40,7 @@ function PlayState:update(dt)
   if love.keyboard.wasPressed('space') then
     gAudio['shot1']:stop()
     gAudio['shot1']:play()
-    table.insert(self.playerShots, PlayerShot(self.playerShip.x + 16, self.playerShip.y + 6))
+    table.insert(self.playerShots, PlayerShot(self.playerShip.x + 16, self.playerShip.y + 6, self.playerShip.orientation))
   end
 
   self.playerShip:update(dt)
@@ -77,9 +77,12 @@ function PlayState:update(dt)
 
   for k, enemy in pairs(self.enemies) do
     enemy:update(dt)
-  end
 
-  for k, enemy in pairs(self.enemies) do
+    if self.playerShip:collides(enemy) then
+      gAudio['explosion']:play()      
+      self.playerShip:takeDamage(1)
+    end
+
     if enemy:leftPlay() then
       table.remove(self.enemies, k)
       table.insert(self.enemies, randomEnemy)  

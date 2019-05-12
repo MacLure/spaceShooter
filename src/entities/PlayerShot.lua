@@ -1,18 +1,32 @@
 PlayerShot = Class{}
 
-function PlayerShot:init(x, y)
+function PlayerShot:init(x, y, orientation)
   self.x = x
   self.y = y
   self.width = 8
   self.height = 4
-  
+  self.orientation = orientation
   self.shotSpeed = 400
 
-  self.graphic = love.graphics.newImage('src/assets/shot1.png')
+  if self.orientation == "up" then
+    self.graphic = love.graphics.newImage('src/assets/shot1u.png')
+  elseif self.orientation == "down" then
+    self.graphic = love.graphics.newImage('src/assets/shot1d.png')
+  else
+    self.graphic = love.graphics.newImage('src/assets/shot1.png')
+  end
 end
 
 function PlayerShot:update(dt)
-  self.x = self.x + self.shotSpeed * dt
+  if self.orientation == "up" then
+    self.x = self.x + self.shotSpeed / 2 * dt
+    self.y = self.y - self.shotSpeed / 2 * dt
+  elseif self.orientation == "down" then
+    self.x = self.x + self.shotSpeed / 2 * dt
+    self.y = self.y + self.shotSpeed / 2 * dt
+  else
+    self.x = self.x + self.shotSpeed * dt
+  end
 end
 
 function PlayerShot:collides(target)
