@@ -7,17 +7,22 @@ function PlayerShip:init(selectedShip)
   if selectedShip == 2 then
     self.skin = love.graphics.newImage('src/assets/ship2.png')
   end
-  self.x = VIRTUAL_WIDTH / 2
-  self.y = VIRTUAL_HEIGHT / 2 - 20
-  self.dx = 0
-  self.dy = 0
+  self.x      = VIRTUAL_WIDTH / 2
+  self.y      = VIRTUAL_HEIGHT / 2 - 20
+  self.dx     = 0
+  self.dy     = 0
   self.height = 12
-  self.width = 24
+  self.width  = 24
 
-  self.orientation = 'straight'
+  self.orientation  = 'straight'
 
-  self.shipSpeed = 100
-  self.hp = 3
+  self.invulnerable = false
+  self.invulnerableDuration = 0
+  self.invulnerableTimer = 0
+  self.flashTimer = 0
+
+  self.shipSpeed  = 100
+  self.hp         = 3
 
 end
 
@@ -32,8 +37,16 @@ function PlayerShip:collides(target)
 end
 
 function PlayerShip:takeDamage(amount)
-  self.hp = self.hp - 1
+  if self.canTakeDamage == false then
+    self.hp = self.hp - 1
+  end
 end
+
+function PlayerShip:goInvulnerable(duration)
+  self.invulnerable = true
+  self.invulnerableDuration = duration
+end
+
 
 function PlayerShip:update(dt)
 
@@ -77,8 +90,26 @@ function PlayerShip:update(dt)
     self.x = math.min(VIRTUAL_WIDTH - self.width, self.x + self.dx * dt)
   end
 
+  if self.invulnerable then
+      self.flashTimer = self.flashTimer + dt
+      self.invulnerableTimer = self.invulnerableTimer + dt
+
+    if self.invulnerableTimer > self.invulnerableDuration then
+      self.invulnerable = false
+      self.invulnerableTimer = 0
+      self.invulnerableDuration = 0
+      self.flashTimer = 0
+    end
+  end
+
 end
 
 function PlayerShip:render()
+  if self.invulnerable and self.flashTimer > 0.06 then
+    self.flashTimer = 0
+    love.graphics.setColor(255, 255, 255, 64)
+  end
   love.graphics.draw(self.skin, self.x, self.y)
+  love.graphics.setColor(255, 255, 255, 255)
+
 end

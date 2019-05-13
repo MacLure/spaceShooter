@@ -56,6 +56,7 @@ function love.resize(w, h)
 end
 
 function love.update(dt)
+  Timer.update(dt)
   gStateMachine:update(dt)
   love.keyboard.keysPressed = {}
 end

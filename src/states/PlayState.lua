@@ -79,8 +79,11 @@ function PlayState:update(dt)
     enemy:update(dt)
 
     if self.playerShip:collides(enemy) then
-      gAudio['explosion']:play()      
-      self.playerShip:takeDamage(1)
+      if not self.playerShip.invulnerable then
+        self.playerShip:takeDamage(1)
+        self.playerShip:goInvulnerable(1.5)  
+        gAudio['explosion']:play()    
+      end
     end
 
     if enemy:leftPlay() then
@@ -112,7 +115,6 @@ function PlayState:render()
   for k, enemy in pairs(self.enemies) do
     enemy:render(dt)
   end
-  -- self.enemy:render()
 
 
 end
