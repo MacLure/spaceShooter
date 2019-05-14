@@ -81,7 +81,12 @@ function PlayState:update(dt)
     if self.playerShip:collides(enemy) then
       if not self.playerShip.invulnerable then
         self.playerShip:takeDamage(1)
-        self.playerShip:goInvulnerable(1.5)  
+        self.playerShip:goInvulnerable(1.5) 
+        enemy:takeDamage(1) 
+        if enemy.hp < 1 then
+          table.remove(self.enemies, k)
+          table.insert(self.enemies, randomEnemy)
+        end
         gAudio['explosion']:play()    
       end
     end
