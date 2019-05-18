@@ -10,6 +10,16 @@ function Enemy2:init()
   self.graphic = love.graphics.newImage('src/assets/enemy2.png')
   self.hitFlashTimer = 0
   self.hitFlashDuration = 0
+  self.whiteShader = love.graphics.newShader[[
+    extern float WhiteFactor;
+
+    vec4 effect(vec4 vcolor, Image tex, vec2 texcoord, vec2 pixcoord)
+    {
+        vec4 outputcolor = Texel(tex, texcoord) * vcolor;
+        outputcolor.rgb += vec3(WhiteFactor);
+        return outputcolor;
+    }
+  ]]
 
 end
 
@@ -38,11 +48,8 @@ function Enemy2:update(dt)
 end
 
 function Enemy2:render()
-  if self.hitFlashTimer < self.hitFlashDuration then
-  love.graphics.setColor(511,511,511,255)
-
-end
-
-love.graphics.draw(self.graphic, self.x, self.y)
-
+  love.graphics.setShader(self.whiteShader)
+  self.whiteShader:send('WhiteFactor', self.hitFlashTimer < self.hitFlashDuration and 1 or 0)
+  love.graphics.draw(self.graphic, self.x, self.y)
+  love.graphics.setShader()
 end

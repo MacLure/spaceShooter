@@ -108,7 +108,6 @@ function PlayState:render()
 
   love.graphics.setColor(255,255,0)
   love.graphics.setFont(gFonts['small'])
-  love.graphics.printf("PLAY STATE", 0, 20, VIRTUAL_WIDTH, 'center')
 
   love.graphics.setColor(255,255,255)
   self.playerShip:render()
@@ -120,6 +119,5 @@ function PlayState:render()
   for k, enemy in pairs(self.enemies) do
     enemy:render(dt)
   end
-
 
 end
