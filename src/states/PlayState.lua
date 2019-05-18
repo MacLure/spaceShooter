@@ -40,7 +40,7 @@ function PlayState:update(dt)
   if love.keyboard.wasPressed('space') then
     gAudio['shot1']:stop()
     gAudio['shot1']:play()
-    table.insert(self.playerShots, PlayerShot(self.playerShip.x + 16, self.playerShip.y + 6, self.playerShip.orientation))
+    table.insert(self.playerShots, PlayerShot(self.playerShip.x + 16, self.playerShip.y + 6, self.playerShip.angle))
   end
 
   self.playerShip:update(dt)

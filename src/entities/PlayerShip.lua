@@ -14,7 +14,9 @@ function PlayerShip:init(selectedShip)
   self.height = 12
   self.width  = 24
 
-  self.orientation  = 'straight'
+  self.angle  = 0
+  self.widthOffsetFactor = 1
+  self.heightOffsetFactor = 0
 
   self.invulnerable = false
   self.invulnerableDuration = 0
@@ -67,14 +69,15 @@ function PlayerShip:update(dt)
   end
 
   if love.keyboard.isDown('a') then
-    self.skin = love.graphics.newImage('src/assets/ship1u.png')
-    self.orientation = 'up'
+    self.angle = -20
+    self.heightOffsetFactor = -0.25
   elseif love.keyboard.isDown('s') then
-    self.skin = love.graphics.newImage('src/assets/ship1d.png')
-    self.orientation = 'down'
+    self.angle = 20
+    self.heightOffsetFactor = 0.25
   else
-    self.skin = love.graphics.newImage('src/assets/ship1.png')
-    self.orientation = 'straight'
+    self.angle = 0
+    self.heightOffsetFactor = 0
+
   end
 
 
@@ -109,7 +112,9 @@ function PlayerShip:render()
     self.flashTimer = 0
     love.graphics.setColor(255, 255, 255, 64)
   end
-  love.graphics.draw(self.skin, self.x, self.y)
+
+  love.graphics.draw(self.skin, self.x, self.y, math.rad(self.angle), 1, 1, 0, self.height * self.heightOffsetFactor)
+
   love.graphics.setColor(255, 255, 255, 255)
 
 end

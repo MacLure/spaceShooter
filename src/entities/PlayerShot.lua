@@ -1,11 +1,11 @@
 PlayerShot = Class{}
 
-function PlayerShot:init(x, y, orientation)
+function PlayerShot:init(x, y, angle)
   self.x = x
   self.y = y
   self.width = 8
   self.height = 4
-  self.orientation = orientation
+  self.angle = angle
   self.shotSpeed = 400
 
   if self.orientation == "up" then
@@ -18,14 +18,12 @@ function PlayerShot:init(x, y, orientation)
 end
 
 function PlayerShot:update(dt)
-  if self.orientation == "up" then
-    self.x = self.x + self.shotSpeed / 2 * dt
-    self.y = self.y - self.shotSpeed / 2 * dt
-  elseif self.orientation == "down" then
-    self.x = self.x + self.shotSpeed / 2 * dt
-    self.y = self.y + self.shotSpeed / 2 * dt
+  if self.angle == 0 then
+    self.x = self.x + math.cos(self.angle / 2) * self.shotSpeed * dt
+    self.y = self.y + math.sin(self.angle / 2) * self.shotSpeed * dt  
   else
-    self.x = self.x + self.shotSpeed * dt
+    self.x = self.x + math.cos(self.angle / 2) * -self.shotSpeed * dt
+    self.y = self.y + math.sin(self.angle / 2) * -self.shotSpeed * dt
   end
 end
 
@@ -47,5 +45,5 @@ function PlayerShot:leftPlay()
 end
 
 function PlayerShot:render()
-  love.graphics.draw(self.graphic, self.x, self.y)
+  love.graphics.draw(self.graphic, self.x, self.y, math.rad(self.angle))
 end
